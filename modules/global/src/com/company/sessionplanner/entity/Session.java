@@ -7,6 +7,7 @@ import com.haulmont.cuba.core.entity.annotation.LookupType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @NamePattern("%s|description")
@@ -75,5 +76,15 @@ public class Session extends StandardEntity {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void updateEndDate() {
+        ensDate = calculateEndDate(startDate);
+    }
+
+    public static Date calculateEndDate(Date startDate) {
+        return Date.from(startDate.toInstant().plus(1, ChronoUnit.HOURS));
     }
 }
