@@ -29,7 +29,7 @@ create table SESSIONPLANNER_SESSION (
     --
     TOPIC varchar(255) not null,
     START_DATE timestamp not null,
-    ENS_DATE timestamp,
+    END_DATE timestamp,
     SPEAKER_ID uuid not null,
     DESCRIPTION varchar(2000),
     --

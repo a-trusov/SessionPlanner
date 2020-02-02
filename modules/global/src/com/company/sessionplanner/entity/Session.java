@@ -26,8 +26,8 @@ public class Session extends StandardEntity {
     protected Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "ENS_DATE")
-    protected Date ensDate;
+    @Column(name = "END_DATE")
+    protected Date endDate;
 
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
     @NotNull
@@ -54,12 +54,12 @@ public class Session extends StandardEntity {
         this.speaker = speaker;
     }
 
-    public Date getEnsDate() {
-        return ensDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnsDate(Date ensDate) {
-        this.ensDate = ensDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Date getStartDate() {
@@ -81,7 +81,7 @@ public class Session extends StandardEntity {
     @PrePersist
     @PreUpdate
     public void updateEndDate() {
-        ensDate = calculateEndDate(startDate);
+        endDate = calculateEndDate(startDate);
     }
 
     public static Date calculateEndDate(Date startDate) {
